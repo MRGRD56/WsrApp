@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace WsrApp.Server.Helpers
 {
-    public static class MethodHelper
+    internal static class MethodHelper
     {
         //https://stackoverflow.com/questions/22598323/movenext-instead-of-actual-method-task-name
-        public static MethodBase GetAsyncMethod(MethodBase asyncMethod)
+        private static MethodBase GetAsyncMethod(MethodBase asyncMethod)
         {
             var generatedType = asyncMethod.DeclaringType;
             var originalType = generatedType.DeclaringType;
@@ -27,7 +27,7 @@ namespace WsrApp.Server.Helpers
             return foundMethod;
         }
 
-        public static string GetParametersString(MethodBase method)
+        internal static string GetParametersString(MethodBase method)
         {
             var parameters = method.GetParameters();
             var result = "[Parameters] \n";
@@ -36,6 +36,20 @@ namespace WsrApp.Server.Helpers
             result += string.Join("; \n", parametersStrings) + ".";
 
             return result;
+        }
+
+        internal static string GetCurrentSyncParametersString()
+        {
+            var stackTrace = new StackTrace();
+            var method = stackTrace.GetFrame(1).GetMethod();
+            return GetParametersString(method);
+        }
+
+        internal static string GetCurrentAsyncParametersString()
+        {
+            var stackTrace = new StackTrace();
+            var method = stackTrace.GetFrame(1).GetMethod();
+            return GetParametersString(GetAsyncMethod(method));
         }
     }
 }

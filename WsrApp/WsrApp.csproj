@@ -4,6 +4,142 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject>WsrApp.App</StartupObject>
+    <ApplicationIcon>logo_mini.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\18dp\outline_arrow_back_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_chevron_left_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_chevron_right_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_event_note_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_expand_less_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_expand_more_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_help_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_school_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_task_black_18dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_arrow_back_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_chevron_left_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_chevron_right_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_event_note_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_expand_less_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_expand_more_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_help_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_school_black_24dp.png" />
+    <None Remove="Resources\Icons\24dp\outline_task_black_24dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_arrow_back_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_chevron_left_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_chevron_right_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_event_note_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_expand_less_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_expand_more_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_help_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_school_black_36dp.png" />
+    <None Remove="Resources\Icons\36dp\outline_task_black_36dp.png" />
+    <None Remove="Resources\Icons\logo_full.png" />
+    <None Remove="Resources\Icons\logo_full.svg" />
+    <None Remove="Resources\Icons\logo_mini.png" />
+    <None Remove="Resources\Icons\logo_mini.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Icons\36dp\outline_arrow_back_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_chevron_left_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_chevron_right_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_event_note_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_expand_less_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_expand_more_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_help_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_school_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\36dp\outline_task_black_36dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Icons\18dp\outline_arrow_back_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_chevron_left_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_chevron_right_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_event_note_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_expand_less_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_expand_more_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_help_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_school_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_task_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_arrow_back_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_chevron_left_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_chevron_right_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_event_note_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_expand_less_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_expand_more_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_help_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_school_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\24dp\outline_task_black_24dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\logo_full.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Icons\logo_full.svg" />
+    <Content Include="Resources\Icons\logo_mini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <ProjectReference Include="..\WsrApp.Model\WsrApp.Model.csproj" />
+    <Resource Include="Resources\Icons\logo_mini.svg" />
+  </ItemGroup>
 
 </Project>

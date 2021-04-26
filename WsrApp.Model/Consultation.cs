@@ -8,7 +8,7 @@ namespace WsrApp.Model
     {
         public int Id { get; set; }
 
-        public bool IsUnaccepted { get; set; }
+        public bool IsAccepted { get; set; }
 
         public Project Project { get; set; }
 

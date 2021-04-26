@@ -22,7 +22,6 @@ namespace WsrApp.Server.Controllers.Api
         public AccessTokenController(AppDbContext db)
         {
             _db = db;
-            _db.Users.Load();
         }
 
         [HttpGet]
@@ -30,7 +29,7 @@ namespace WsrApp.Server.Controllers.Api
         {
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
-                return BadRequest(MethodHelper.GetParametersString(MethodHelper.GetAsyncMethod(MethodBase.GetCurrentMethod())));
+                return BadRequest(MethodHelper.GetCurrentAsyncParametersString());
             }
 
             var teacher = await _db.Teachers.FirstOrDefaultAsync(x => x.Login.ToLower() == login.Trim().ToLower() && x.Password == password);

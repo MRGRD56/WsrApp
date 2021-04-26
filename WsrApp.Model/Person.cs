@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -15,6 +16,7 @@ namespace WsrApp.Model
 
         public string Patronymic { get; set; }
 
+        [JsonIgnore]
         public string FullName => $"{LastName} {FirstName} {Patronymic}";
     }
 }
