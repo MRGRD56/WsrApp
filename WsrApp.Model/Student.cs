@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace WsrApp.Model
 {
-    public class Student
+    [Table("Students")]
+    public class Student : Person
     {
-        public int Id { get; set; }
+        public Faculty Faculty { get; set; }
 
-        public string FullName { get; set; }
-
-        public string[] Skills { get; set; }
+        public List<StudentSkill> Skills { get; set; } = new();
     }
 }

@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace WsrApp.Model
 {
-    public class User
+    [Table("Users")]
+    public class User : Person
     {
-        public int Id { get; set; }
-
-        public string LastName { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string Patronymic { get; set; }
-
         public string Login { get; set; }
 
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
     }
 }

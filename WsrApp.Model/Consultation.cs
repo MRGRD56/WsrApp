@@ -10,11 +10,17 @@ namespace WsrApp.Model
 
         public bool IsUnaccepted { get; set; }
 
+        public Project Project { get; set; }
+
+        public Teacher Teacher { get; set; }
+
         public Student Student { get; set; }
 
         public string Description { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime RequestDateTime { get; set; }
+
+        public DateTime StartDateTime { get; set; }
 
         /// <summary>
         /// Длительность в минутах.
