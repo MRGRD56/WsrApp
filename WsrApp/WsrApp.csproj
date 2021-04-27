@@ -73,10 +73,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Pages\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Resources\Icons\18dp\outline_arrow_back_black_18dp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

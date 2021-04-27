@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WsrApp.ViewModels.WindowsViewModels;
 
-namespace WsrApp.Views.Windows
+namespace WsrApp.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProjectsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProjectsPage : Page
     {
-        public MainWindow()
+        public ProjectsPage()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
         }
     }
 }

@@ -22,6 +22,10 @@ namespace WsrApp.Model
 
         public DateTime StartDateTime { get; set; }
 
+        public DateTime EndDateTime => StartDateTime.AddMinutes(Duration);
+
+        public string TimePeriodString => $"{StartDateTime:HH\\:mm}-{EndDateTime:HH\\:mm}";
+
         /// <summary>
         /// Длительность в минутах.
         /// </summary>

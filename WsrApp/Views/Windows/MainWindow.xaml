@@ -3,86 +3,158 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WsrApp.Views.Windows"
-        mc:Ignorable="d" UseLayoutRounding="False"
-        Title="АБвГДЕ" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <StackPanel>
-                <Image Source="/Resources/Icons/logo_full.png"/>
-                <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Resources/Icons/18dp/outline_event_note_black_18dp.png" />
-                        <TextBlock Grid.Column="1" Text="Календарь" Margin="5 0 0 0"/>
+        xmlns:local="clr-namespace:WsrApp.Views.Windows" xmlns:windowsviewmodels="clr-namespace:WsrApp.ViewModels.WindowsViewModels" xmlns:pages="clr-namespace:WsrApp.Views.Pages"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WindowStyle}"
+        Title="{Binding WindowTitle}" Height="600" Width="850">
+    <d:Window.DataContext>
+        <windowsviewmodels:MainWindowViewModel/>
+    </d:Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+    </Window.Resources>
+    <Border BorderBrush="#e0e0e0" BorderThickness="0 0 0 0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#e0e0e0" BorderThickness="0 0 1 0">
+                <Grid>
+                    <Grid Visibility="{Binding IsMenuMiniMode, Converter={StaticResource VisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <Image Source="/Resources/Icons/logo_mini.png" Width="40" Margin="3 3 3 8"/>
+                            <Button Style="{DynamicResource CircleIconButton}" HorizontalAlignment="Center"
+                                    Visibility="{Binding IsAuthorized, Converter={StaticResource VisibilityConverter}}"
+                                    ToolTip="Календарь"
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="{x:Type pages:CalendarPage}">
+                                <Image Source="/Resources/Icons/24dp/outline_event_note_black_24dp.png"/>
+                            </Button>
+                            <Button Style="{DynamicResource CircleIconButton}" HorizontalAlignment="Center"
+                                    Margin="0 3"
+                                    Visibility="{Binding IsAuthorized, Converter={StaticResource VisibilityConverter}}"
+                                    ToolTip="Консультации"
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="{x:Type pages:ConsultationsPage}">
+                                <Image Source="/Resources/Icons/24dp/outline_school_black_24dp.png"/>
+                            </Button>
+                            <Button Style="{DynamicResource CircleIconButton}" HorizontalAlignment="Center"
+                                    Visibility="{Binding IsAuthorized, Converter={StaticResource VisibilityConverter}}"
+                                    ToolTip="Проекты"
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="{x:Type pages:ProjectsPage}">
+                                <Image Source="/Resources/Icons/24dp/outline_task_black_24dp.png"/>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1">
+                            <Button Style="{DynamicResource CircleIconButton}" HorizontalAlignment="Center"
+                            Command="{Binding ToggleMenuModeCommand}" Margin="0 5"
+                            ToolTip="Развернуть">
+                                <Image Source="/Resources/Icons/24dp/outline_chevron_right_black_24dp.png"/>
+                            </Button>
+                        </StackPanel>
                     </Grid>
-                </Button>
-                <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Resources/Icons/18dp/outline_school_black_18dp.png"/>
-                        <TextBlock Grid.Column="1" Text="Консультации" Margin="5 0 0 0"/>
+                    <Grid Visibility="{Binding IsMenuFullMode, Converter={StaticResource VisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <Image Source="/Resources/Icons/logo_full.png" MaxWidth="263"/>
+                            <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left"
+                                    Visibility="{Binding IsAuthorized, Converter={StaticResource VisibilityConverter}}"
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="{x:Type pages:CalendarPage}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Resources/Icons/18dp/outline_event_note_black_18dp.png" />
+                                    <TextBlock Grid.Column="1" Text="Календарь" Margin="5 0 0 0"
+                                               FontWeight="SemiBold"/>
+                                </Grid>
+                            </Button>
+                            <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left"
+                                    Visibility="{Binding IsAuthorized, Converter={StaticResource VisibilityConverter}}"
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="{x:Type pages:ConsultationsPage}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Resources/Icons/18dp/outline_school_black_18dp.png"/>
+                                    <TextBlock Grid.Column="1" Text="Консультации" Margin="5 0 0 0"
+                                               FontWeight="SemiBold"/>
+                                </Grid>
+                            </Button>
+                            <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left"
+                                    Visibility="{Binding IsAuthorized, Converter={StaticResource VisibilityConverter}}"
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="{x:Type pages:ProjectsPage}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Resources/Icons/18dp/outline_task_black_18dp.png"/>
+                                    <TextBlock Grid.Column="1" Text="Проекты" Margin="5 0 0 0"
+                                               FontWeight="SemiBold"/>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1">
+                            <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left" Padding="8 5"
+                                    Command="{Binding ToggleMenuModeCommand}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Resources/Icons/18dp/outline_chevron_left_black_18dp.png" />
+                                    <TextBlock Grid.Column="1" Text="Свернуть" Margin="5 0 0 0"/>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
                     </Grid>
-                </Button>
-                <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Resources/Icons/18dp/outline_task_black_18dp.png"/>
-                        <TextBlock Grid.Column="1" Text="Проекты" Margin="5 0 0 0"/>
-                    </Grid>
-                </Button>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Margin="0 5">
-                <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Resources/Icons/18dp/outline_chevron_left_black_18dp.png" />
-                        <TextBlock Grid.Column="1" Text="Свернуть" Margin="5 0 0 0"/>
-                    </Grid>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid Margin="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal">
-                    <Button VerticalAlignment="Center" Margin="5 0">
-                        <Image Source="/Resources/Icons/24dp/outline_arrow_back_black_24dp.png" />
-                    </Button>
-                    <TextBlock Text="Календарь" VerticalAlignment="Center" FontSize="22"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="Иванов Иван Иванович" FontSize="15" VerticalAlignment="Center"/>
-                    <Border Width="24" Height="24" Background="{StaticResource SecondaryColorBrush}" Margin="8 0" BorderBrush="{StaticResource PrimaryColorBrush}" BorderThickness="2"/>
-                </StackPanel>
+                </Grid>
+            </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{DynamicResource CircleIconButton}" VerticalAlignment="Center" Margin="5 0 0 0"
+                            Visibility="{Binding CanGoBack, Converter={StaticResource VisibilityConverter}}"
+                            Command="{Binding GoBackCommand}">
+                            <Image Source="/Resources/Icons/24dp/outline_arrow_back_black_24dp.png" />
+                        </Button>
+                        <TextBlock Text="{Binding PageTitle}" VerticalAlignment="Center" FontSize="22" Margin="5 -3 0 0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right"
+                            Visibility="{Binding IsAuthorized, Converter={StaticResource VisibilityConverter}}">
+                        <StackPanel Margin="0 -3 0 0">
+                            <TextBlock Text="{Binding CurrentUser.FullName}" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <Button Style="{DynamicResource LinkButton}" Content="Выйти" HorizontalAlignment="Right" Margin="0 -2 0 0"
+                                    Command="{Binding LogoutCommand}"/>
+                        </StackPanel>
+                        <Image MaxWidth="30" MaxHeight="30" Margin="8 0" Source="{Binding CurrentUserPhoto}"/>
+                    </StackPanel>
+                </Grid>
+                <Frame x:Name="Frame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
             </Grid>
         </Grid>
-    </Grid>
+    </Border>
 </Window>

@@ -1,0 +1,114 @@
+﻿<Page x:Class="WsrApp.Views.Pages.CalendarPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WsrApp.Views.Pages" xmlns:pagesviewmodels="clr-namespace:WsrApp.ViewModels.PagesViewModels"
+      mc:Ignorable="d" Style="{StaticResource PageStyle}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Календарь">
+    <Page.DataContext>
+        <pagesviewmodels:CalendarPageViewModel/>
+    </Page.DataContext>
+    <Border Margin="8" BorderBrush="#CFD8DC" BorderThickness="1">
+        <Grid Grid.IsSharedSizeScope="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 0" Width="120" Background="#f5f7f8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" SharedSizeGroup="HeaderRow"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" SharedSizeGroup="HeaderRow"/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource MenuButton}">
+                        <Image Source="/Resources/Icons/24dp/outline_expand_less_black_24dp.png" Width="24" Height="24"/>
+                    </Button>
+                    <TextBlock Text="09:00" TextAlignment="Center" FontSize="18" Grid.Row="1"/>
+                    <TextBlock Text="10:00" TextAlignment="Center" FontSize="18" Grid.Row="2"/>
+                    <TextBlock Text="11:00" TextAlignment="Center" FontSize="18" Grid.Row="3"/>
+                    <TextBlock Text="12:00" TextAlignment="Center" FontSize="18" Grid.Row="4"/>
+                    <TextBlock Text="13:00" TextAlignment="Center" FontSize="18" Grid.Row="5"/>
+                    <TextBlock Text="14:00" TextAlignment="Center" FontSize="18" Grid.Row="6"/>
+                    <TextBlock Text="15:00" TextAlignment="Center" FontSize="18" Grid.Row="7"/>
+                    <TextBlock Text="16:00" TextAlignment="Center" FontSize="18" Grid.Row="8"/>
+                    <Button Grid.Row="9" Style="{StaticResource MenuButton}">
+                        <Image Source="/Resources/Icons/24dp/outline_expand_more_black_24dp.png" Width="24" Height="24"/>
+                    </Button>
+                </Grid>
+            </Border>
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+                <ItemsControl ItemsSource="{Binding ConsultationsDaysShedules}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0 0 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" SharedSizeGroup="HeaderRow"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="19"/>
+                                </Grid.RowDefinitions>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Width="120" Background="#f5f7f8">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock Text="{Binding ConsultationsDay.WeekDay}" TextAlignment="Center" FontSize="14" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding ConsultationsDay.Date, StringFormat={}{0:dd.MM}}" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="1"/>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="2"/>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="3"/>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="4"/>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="5"/>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="6"/>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="7"/>
+                                <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="8"/>
+                                <ItemsControl Grid.Row="1" Grid.RowSpan="8" ItemsSource="{Binding Entries}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <Grid/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="{Binding TopStarMargin}"/>
+                                                    <RowDefinition Height="{Binding StarHeight}"/>
+                                                    <RowDefinition Height="{Binding BottomStarMargin}"/>
+                                                </Grid.RowDefinitions>
+                                                <Border Grid.Row="1" BorderBrush="#CFD8DC" BorderThickness="1" Background="#eceff1">
+                                                    <TextBlock Text="{Binding Consultation.TimePeriodString}" 
+                                                               VerticalAlignment="Center" TextAlignment="Center"/>
+                                                </Border>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Page>
