@@ -74,11 +74,19 @@ namespace WsrApp.ViewModels.PagesViewModels
 
         private void UpdateDisplayableData()
         {
-            LeftTimes.Clear();
+            if (LeftTimes.Count < HoursCount)
+            {
+                for (var i = 0; i < HoursCount; i++)
+                {
+                    LeftTimes.Add(new TimeSpan());
+                }
+            }
+            var ltIndex = 0;
             for (var hour = HoursFrom; hour < HoursFrom + HoursCount; hour++)
             {
                 var realHour = hour is >= 0 and <= 23 ? hour : 24 - hour;
-                LeftTimes.Add(TimeSpan.FromHours(realHour));
+                //LeftTimes.Add(TimeSpan.FromHours(realHour));
+                LeftTimes[ltIndex++] = TimeSpan.FromHours(realHour);
             }
 
             ConsultationsDays.Clear();
