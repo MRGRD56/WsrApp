@@ -14,6 +14,7 @@ namespace WsrApp.ViewModels.PagesViewModels
     public class CalendarPageViewModel : BaseViewModel
     {
         private int _hoursFrom = 9;
+        private Consultation _selectedConsultation;
 
         public ObservableCollection<Consultation> Consultations { get; set; } = new();
         public ObservableCollection<ConsultationsDay> ConsultationsDays { get; set; } = new();
@@ -104,11 +105,11 @@ namespace WsrApp.ViewModels.PagesViewModels
             ConsultationsDaysShedules.Clear();
             foreach (var x in ConsultationsDays)
             {
-                ConsultationsDaysShedules.Add(new ConsultationsDayShedule(x, HoursFrom, HoursCount));
+                ConsultationsDaysShedules.Add(new ConsultationsDayShedule(x, HoursFrom, HoursCount, SelectedConsultation));
             }
         }
 
-        public Command ChangeTimePageCommand => new(o => 
+        public Command ChangeTimePageCommand => new(o =>
         {
             var increment = Convert.ToInt32(o);
             ChangeTimePage(increment);
@@ -119,5 +120,38 @@ namespace WsrApp.ViewModels.PagesViewModels
             HoursFrom += increment;
             UpdateDisplayableData();
         }
+
+        public Consultation SelectedConsultation
+        {
+            get => _selectedConsultation;
+            set
+            {
+                _selectedConsultation = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsConsultationSelected));
+            }
+        }
+
+        public bool IsConsultationSelected => SelectedConsultation != null;
+
+        private void UnselectAllScheduleEntries()
+        {
+            ConsultationsDaysShedules.ToList().ForEach(x => x.Entries.ForEach(e => e.IsSelected = false));
+        }
+
+        public Command SelectConsultationCommand => new(o =>
+        {
+            var parameter = (ConsultationsDaySheduleEntry)o;
+            UnselectAllScheduleEntries();
+            parameter.IsSelected = true;
+            var consultation = parameter.Consultation;
+            SelectedConsultation = consultation;
+        });
+
+        public Command UnselectConsultationCommand => new(_ => 
+        {
+            UnselectAllScheduleEntries();
+            SelectedConsultation = null;
+        });
     }
 }

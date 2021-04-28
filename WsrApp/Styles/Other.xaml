@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="Border" x:Key="ClickableBorder">
-        <Setter Property="BorderBrush" Value="#CFD8DC"/>
+        <Setter Property="BorderBrush" Value="#cfd8dc"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="#eceff1"/>
         <Setter Property="Cursor" Value="Hand"/>

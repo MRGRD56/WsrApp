@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\18dp\baseline_comment_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\baseline_person_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\baseline_task_alt_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\baseline_task_black_18dp.png" />
     <None Remove="Resources\Icons\18dp\outline_arrow_back_black_18dp.png" />
     <None Remove="Resources\Icons\18dp\outline_chevron_left_black_18dp.png" />
     <None Remove="Resources\Icons\18dp\outline_chevron_right_black_18dp.png" />
@@ -17,6 +21,7 @@
     <None Remove="Resources\Icons\18dp\outline_expand_less_black_18dp.png" />
     <None Remove="Resources\Icons\18dp\outline_expand_more_black_18dp.png" />
     <None Remove="Resources\Icons\18dp\outline_help_black_18dp.png" />
+    <None Remove="Resources\Icons\18dp\outline_schedule_black_18dp.png" />
     <None Remove="Resources\Icons\18dp\outline_school_black_18dp.png" />
     <None Remove="Resources\Icons\18dp\outline_task_black_18dp.png" />
     <None Remove="Resources\Icons\24dp\outline_arrow_back_black_24dp.png" />
@@ -46,7 +51,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Icons\18dp\baseline_comment_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\baseline_person_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\baseline_task_alt_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\baseline_task_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\18dp\outline_close_black_18dp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\18dp\outline_schedule_black_18dp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\24dp\outline_close_black_24dp.png">

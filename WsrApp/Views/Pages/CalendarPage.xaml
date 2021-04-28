@@ -10,6 +10,9 @@
     <Page.DataContext>
         <pagesviewmodels:CalendarPageViewModel/>
     </Page.DataContext>
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -106,7 +109,14 @@
                                                         <RowDefinition Height="{Binding StarHeight}"/>
                                                         <RowDefinition Height="{Binding BottomStarMargin}"/>
                                                     </Grid.RowDefinitions>
-                                                    <Border Grid.Row="1" Style="{StaticResource ClickableBorder}">
+                                                    <Border Grid.Row="1" Style="{StaticResource ClickableBorder}"
+                                                            Background="{Binding BackgroundBrush}">
+                                                        <Border.InputBindings>
+                                                            <MouseBinding MouseAction="LeftClick"
+                                                                          Command="{Binding DataContext.SelectConsultationCommand,
+                                                                                RelativeSource={RelativeSource AncestorType=local:CalendarPage}}"
+                                                                          CommandParameter="{Binding}"/>
+                                                        </Border.InputBindings>
                                                         <TextBlock Text="{Binding Consultation.TimePeriodString}" 
                                                                VerticalAlignment="Center" TextAlignment="Center"/>
                                                     </Border>
@@ -121,17 +131,58 @@
                 </ScrollViewer>
             </Grid>
         </Border>
-        <Border Grid.Column="1" Margin="0 8 8 8" BorderBrush="#CFD8DC" BorderThickness="1">
-            <StackPanel>
-                <Grid Margin="3">
+        <Border Grid.Column="1" Margin="0 8 8 8" BorderBrush="#CFD8DC" BorderThickness="1"
+                Visibility="{Binding IsConsultationSelected, Converter={StaticResource VisibilityConverter}}"
+                Width="270">
+            <StackPanel Margin="10 3 5 3">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Консультация" FontSize="20" VerticalAlignment="Center" Margin="3 -2 8 0"/>
-                    <Button Grid.Column="1" Style="{StaticResource CircleIconButton}" VerticalAlignment="Center">
+                    <TextBlock Text="Консультация" FontSize="20" VerticalAlignment="Center" Margin="0 -2 8 0"/>
+                    <Button Grid.Column="1" Style="{StaticResource CircleIconButton}" VerticalAlignment="Center"
+                            Command="{Binding UnselectConsultationCommand}">
                         <Image Source="/Resources/Icons/24dp/outline_close_black_24dp.png" />
                     </Button>
+                </Grid>
+                <StackPanel Orientation="Horizontal" ToolTip="Дата, время, длительность консультации">
+                    <Image Source="/Resources/Icons/18dp/outline_schedule_black_18dp.png" Margin="0 0 5 0"
+                           VerticalAlignment="Top"/>
+                    <TextBlock FontSize="13" TextWrapping="Wrap">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0:dd.MM.yyyy} {1} ({2} мин.)">
+                                <Binding Path="SelectedConsultation.StartDateTime"/>
+                                <Binding Path="SelectedConsultation.TimePeriodString"/>
+                                <Binding Path="SelectedConsultation.Duration"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <Grid Margin="0 5 0 0" ToolTip="Студент">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Resources/Icons/18dp/baseline_person_black_18dp.png" Margin="0 0 5 0" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Column="1" Text="{Binding SelectedConsultation.Student.FullName}" FontSize="13" TextWrapping="Wrap"/>
+                </Grid>
+                <Grid Margin="0 5 0 0" ToolTip="Проект">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Resources/Icons/18dp/baseline_task_alt_black_18dp.png" Margin="0 0 5 0" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Column="1" Text="{Binding SelectedConsultation.Project.Name}" FontSize="13" TextWrapping="Wrap"/>
+                </Grid>
+                <Grid Margin="0 5 0 0" ToolTip="Комментарий" Visibility="{Binding SelectedConsultation.HasDescription, 
+                        Converter={StaticResource VisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Resources/Icons/18dp/baseline_comment_black_18dp.png" Margin="0 0 5 0" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Column="1" Text="{Binding SelectedConsultation.Description}" FontSize="13" TextWrapping="Wrap"/>
                 </Grid>
             </StackPanel>
         </Border>

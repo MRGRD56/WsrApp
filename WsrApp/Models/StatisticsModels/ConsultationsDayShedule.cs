@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using WsrApp.Model;
 
 namespace WsrApp.Models.StatisticsModels
 {
@@ -14,12 +15,14 @@ namespace WsrApp.Models.StatisticsModels
 
         private readonly int _hourFrom;
         private readonly int _hoursCount;
+        private readonly Consultation _selectedConsultation;
 
-        public ConsultationsDayShedule(ConsultationsDay consultationsDay, int hourFrom, int hoursCount)
+        public ConsultationsDayShedule(ConsultationsDay consultationsDay, int hourFrom, int hoursCount, Consultation selectedConsultation)
         {
             ConsultationsDay = consultationsDay;
             _hourFrom = hourFrom;
             _hoursCount = hoursCount;
+            _selectedConsultation = selectedConsultation;
             CalculateEntries();
         }
 
@@ -67,12 +70,15 @@ namespace WsrApp.Models.StatisticsModels
                 var height = consultationSeconds / totalSeconds;
                 var bottomMargin = (totalSeconds - consultationEndSeconds) / totalSeconds;
 
+                var isSelected = _selectedConsultation != null && _selectedConsultation.Id == x.Id;
+
                 Entries.Add(new ConsultationsDaySheduleEntry
                 {
                     Consultation = x,
                     TopStarMargin = new GridLength(topMargin, GridUnitType.Star),
                     StarHeight = new GridLength(height, GridUnitType.Star),
                     BottomStarMargin = new GridLength(bottomMargin, GridUnitType.Star),
+                    IsSelected = isSelected
                 });
             });
         }

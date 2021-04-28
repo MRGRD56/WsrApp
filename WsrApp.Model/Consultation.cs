@@ -18,6 +18,8 @@ namespace WsrApp.Model
 
         public string Description { get; set; }
 
+        public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
+
         public DateTime RequestDateTime { get; set; }
 
         public DateTime StartDateTime { get; set; }
