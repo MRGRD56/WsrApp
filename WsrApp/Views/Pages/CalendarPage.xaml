@@ -51,7 +51,8 @@
                 </Grid>
             </Border>
             <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-                <ItemsControl ItemsSource="{Binding ConsultationsDaysShedules}">
+                <ItemsControl ItemsSource="{Binding ConsultationsDaysShedules}"
+                              MouseWheel="Calendar_MouseWheel">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
@@ -100,7 +101,7 @@
                                                     <RowDefinition Height="{Binding StarHeight}"/>
                                                     <RowDefinition Height="{Binding BottomStarMargin}"/>
                                                 </Grid.RowDefinitions>
-                                                <Border Grid.Row="1" BorderBrush="#CFD8DC" BorderThickness="1" Background="#eceff1">
+                                                <Border Grid.Row="1" Style="{StaticResource ClickableBorder}">
                                                     <TextBlock Text="{Binding Consultation.TimePeriodString}" 
                                                                VerticalAlignment="Center" TextAlignment="Center"/>
                                                 </Border>
