@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WsrApp.ViewModels.PagesViewModels;
 
 namespace WsrApp.Views.Pages
 {
@@ -20,9 +21,25 @@ namespace WsrApp.Views.Pages
     /// </summary>
     public partial class CalendarPage : Page
     {
+        private CalendarPageViewModel ViewModel => (CalendarPageViewModel)DataContext;
+
         public CalendarPage()
         {
             InitializeComponent();
+        }
+
+        private void Calendar_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            //Вниз
+            if (e.Delta < 0)
+            {
+                ViewModel.ChangeTimePage(1);
+            }
+            //Вверх
+            else if (e.Delta > 0)
+            {
+                ViewModel.ChangeTimePage(-1);
+            }
         }
     }
 }

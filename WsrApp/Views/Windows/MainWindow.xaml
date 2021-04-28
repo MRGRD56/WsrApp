@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WsrApp.Views.Windows" xmlns:windowsviewmodels="clr-namespace:WsrApp.ViewModels.WindowsViewModels" xmlns:pages="clr-namespace:WsrApp.Views.Pages"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Style="{StaticResource WindowStyle}"
-        Title="{Binding WindowTitle}" Height="600" Width="850">
+        Title="{Binding WindowTitle}" Height="600" Width="1040">
     <d:Window.DataContext>
         <windowsviewmodels:MainWindowViewModel/>
     </d:Window.DataContext>

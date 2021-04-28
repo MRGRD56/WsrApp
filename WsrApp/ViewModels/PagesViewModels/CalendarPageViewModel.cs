@@ -103,8 +103,13 @@ namespace WsrApp.ViewModels.PagesViewModels
         public Command ChangeTimePageCommand => new(o => 
         {
             var increment = Convert.ToInt32(o);
+            ChangeTimePage(increment);
+        });
+
+        public void ChangeTimePage(int increment)
+        {
             HoursFrom += increment;
             UpdateDisplayableData();
-        });
+        }
     }
 }
