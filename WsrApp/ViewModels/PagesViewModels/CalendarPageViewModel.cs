@@ -24,11 +24,20 @@ namespace WsrApp.ViewModels.PagesViewModels
             get => _hoursFrom;
             set
             {
-                if (_hoursFrom <= 0 || _hoursFrom >= 23 - HoursCount)
+                if (value == 24)
+                {
+                    value = 0;
+                }
+                if (value == -1)
+                {
+                    value = 23;
+                }
                 _hoursFrom = value;
             }
         }
         public int HoursCount { get; set; } = 8;
+
+        public ObservableCollection<TimeSpan> LeftTimes { get; set; } = new();
 
         public DateTime DateFrom { get; set; } = DateTime.Today;
 
@@ -36,10 +45,16 @@ namespace WsrApp.ViewModels.PagesViewModels
 
         public CalendarPageViewModel()
         {
-            LoadConsultations();
+            InitializeData();
         }
 
-        private async void LoadConsultations()
+        private async void InitializeData()
+        {
+            await LoadConsultationsAsync();
+            UpdateDisplayableData();
+        }
+
+        private async Task LoadConsultationsAsync()
         {
             var url = $"{App.ApiUrl}/api/consultations?token={Account.Token}";
             var request = await App.HttpClient.GetAsync(url);
@@ -55,6 +70,16 @@ namespace WsrApp.ViewModels.PagesViewModels
                     Consultations.Add(x);
                 }, null);
             });
+        }
+
+        private void UpdateDisplayableData()
+        {
+            LeftTimes.Clear();
+            for (var hour = HoursFrom; hour < HoursFrom + HoursCount; hour++)
+            {
+                var realHour = hour is >= 0 and <= 23 ? hour : 24 - hour;
+                LeftTimes.Add(TimeSpan.FromHours(realHour));
+            }
 
             ConsultationsDays.Clear();
             for (var date = DateFrom; date <= DateTo; date = date.AddDays(1))
@@ -74,5 +99,12 @@ namespace WsrApp.ViewModels.PagesViewModels
                 ConsultationsDaysShedules.Add(new ConsultationsDayShedule(x, HoursFrom, HoursCount));
             }
         }
+
+        public Command ChangeTimePageCommand => new(o => 
+        {
+            var increment = Convert.ToInt32(o);
+            HoursFrom += increment;
+            UpdateDisplayableData();
+        });
     }
 }

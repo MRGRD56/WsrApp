@@ -30,18 +30,22 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto" SharedSizeGroup="HeaderRow"/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource MenuButton}">
+                    <Button Style="{StaticResource MenuButton}" Command="{Binding ChangeTimePageCommand}"
+                            CommandParameter="-1">
                         <Image Source="/Resources/Icons/24dp/outline_expand_less_black_24dp.png" Width="24" Height="24"/>
                     </Button>
-                    <TextBlock Text="09:00" TextAlignment="Center" FontSize="18" Grid.Row="1"/>
-                    <TextBlock Text="10:00" TextAlignment="Center" FontSize="18" Grid.Row="2"/>
-                    <TextBlock Text="11:00" TextAlignment="Center" FontSize="18" Grid.Row="3"/>
-                    <TextBlock Text="12:00" TextAlignment="Center" FontSize="18" Grid.Row="4"/>
-                    <TextBlock Text="13:00" TextAlignment="Center" FontSize="18" Grid.Row="5"/>
-                    <TextBlock Text="14:00" TextAlignment="Center" FontSize="18" Grid.Row="6"/>
-                    <TextBlock Text="15:00" TextAlignment="Center" FontSize="18" Grid.Row="7"/>
-                    <TextBlock Text="16:00" TextAlignment="Center" FontSize="18" Grid.Row="8"/>
-                    <Button Grid.Row="9" Style="{StaticResource MenuButton}">
+
+                    <TextBlock Text="{Binding LeftTimes[0], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="1"/>
+                    <TextBlock Text="{Binding LeftTimes[1], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="2"/>
+                    <TextBlock Text="{Binding LeftTimes[2], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="3"/>
+                    <TextBlock Text="{Binding LeftTimes[3], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="4"/>
+                    <TextBlock Text="{Binding LeftTimes[4], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="5"/>
+                    <TextBlock Text="{Binding LeftTimes[5], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="6"/>
+                    <TextBlock Text="{Binding LeftTimes[6], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="7"/>
+                    <TextBlock Text="{Binding LeftTimes[7], StringFormat={}{0:hh\\:mm}}" TextAlignment="Center" FontSize="18" Grid.Row="8"/>
+
+                    <Button Grid.Row="9" Style="{StaticResource MenuButton}" Command="{Binding ChangeTimePageCommand}"
+                            CommandParameter="1">
                         <Image Source="/Resources/Icons/24dp/outline_expand_more_black_24dp.png" Width="24" Height="24"/>
                     </Button>
                 </Grid>
@@ -82,7 +86,7 @@
                                 <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="6"/>
                                 <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="7"/>
                                 <Border BorderBrush="#CFD8DC" BorderThickness="0 0 1 1" Background="White" Grid.Row="8"/>
-                                <ItemsControl Grid.Row="1" Grid.RowSpan="8" ItemsSource="{Binding Entries}">
+                                <ItemsControl Grid.Row="1" Grid.RowSpan="8" ItemsSource="{Binding Entries}" Margin="-1 0 0 0">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <Grid/>

@@ -28,10 +28,12 @@ namespace WsrApp.Models.StatisticsModels
             var rangeConsultations = ConsultationsDay.Consultations
                 .Where(x =>
                 {
-                    return x.StartDateTime.Hour >= _hourFrom
-                                        && x.StartDateTime.Hour <= _hourFrom + _hoursCount - 1
-                                        && x.EndDateTime.Hour >= _hourFrom
-                                        && x.EndDateTime.Hour <= _hourFrom + _hoursCount;
+                    //return x.StartDateTime.Hour >= _hourFrom
+                    //                    && x.StartDateTime.Hour <= _hourFrom + _hoursCount - 1
+                    //                    && x.EndDateTime.Hour >= _hourFrom
+                    //                    && x.EndDateTime.Hour <= _hourFrom + _hoursCount;
+                    return x.EndDateTime.TimeOfDay > TimeSpan.FromHours(_hourFrom)
+                        && x.StartDateTime.TimeOfDay < TimeSpan.FromHours(_hourFrom + _hoursCount);
                 })
                 .ToList();
 
@@ -51,6 +53,14 @@ namespace WsrApp.Models.StatisticsModels
                 var totalSeconds = _hoursCount * 60 * 60;
                 var consultationStartSeconds = x.StartDateTime.TimeOfDay.Add(TimeSpan.FromHours(-_hourFrom)).TotalSeconds;
                 var consultationEndSeconds = x.EndDateTime.TimeOfDay.Add(TimeSpan.FromHours(-_hourFrom)).TotalSeconds;
+                if (consultationStartSeconds < 0)
+                {
+                    consultationStartSeconds = 0;
+                }
+                if (consultationEndSeconds > totalSeconds)
+                {
+                    consultationEndSeconds = totalSeconds;
+                }
                 var consultationSeconds = consultationEndSeconds - consultationStartSeconds;
 
                 var topMargin = consultationStartSeconds / totalSeconds;
