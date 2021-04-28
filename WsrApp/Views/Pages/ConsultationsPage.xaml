@@ -3,12 +3,28 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WsrApp.Views.Pages"
+      xmlns:local="clr-namespace:WsrApp.Views.Pages" xmlns:pagesviewmodels="clr-namespace:WsrApp.ViewModels.PagesViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Консультации">
-
+    <Page.DataContext>
+        <pagesviewmodels:ConsultationsPageViewModel/>
+    </Page.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Style="{DynamicResource ReadonlyDataGrid}" ItemsSource="{Binding UnacceptedConsultations}" Margin="8">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата заявки" Binding="{Binding RequestDateTime, StringFormat={}{0:dd.MM.yyyy HH\\:mm\\:ss}}"/>
+                <DataGridTextColumn Header="Проект" Binding="{Binding Project.Name}"/>
+                <DataGridTextColumn Header="Студент" Binding="{Binding Student.FullName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border Grid.Column="1" Margin="0 8 8 8" BorderBrush="#CFD8DC" BorderThickness="1"
+                Width="270">
+            
+        </Border>
     </Grid>
 </Page>

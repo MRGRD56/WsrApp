@@ -78,7 +78,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="/Resources/Icons/18dp/outline_event_note_black_18dp.png" />
                                     <TextBlock Grid.Column="1" Text="Календарь" Margin="5 0 0 0"
-                                               FontWeight="SemiBold"/>
+                                               FontWeight="SemiBold"
+                                               FontSize="13"/>
                                 </Grid>
                             </Button>
                             <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left"
@@ -92,7 +93,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="/Resources/Icons/18dp/outline_school_black_18dp.png"/>
                                     <TextBlock Grid.Column="1" Text="Консультации" Margin="5 0 0 0"
-                                               FontWeight="SemiBold"/>
+                                               FontWeight="SemiBold"
+                                               FontSize="13"/>
                                 </Grid>
                             </Button>
                             <Button Style="{DynamicResource MenuButton}" HorizontalContentAlignment="Left"
@@ -106,7 +108,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Source="/Resources/Icons/18dp/outline_task_black_18dp.png"/>
                                     <TextBlock Grid.Column="1" Text="Проекты" Margin="5 0 0 0"
-                                               FontWeight="SemiBold"/>
+                                               FontWeight="SemiBold"
+                                               FontSize="13"/>
                                 </Grid>
                             </Button>
                         </StackPanel>
